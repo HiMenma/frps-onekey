@@ -529,7 +529,7 @@ fun_configure_proxy(){
     case "${proxy_type}" in
         tcp|udp)
             fun_input_remote_port
-            proxy_config="\n[[proxies]]\nname = \"${proxy_name}\"\ntype = \"${proxy_type}\"\nlocalIP = \"${local_ip}\"\nlocalPort = ${local_port}\nremotePort = ${remote_port}\n"
+            proxy_config=$'\n[[proxies]]\n'"name = \"${proxy_name}\""$'\n'"type = \"${proxy_type}\""$'\n'"localIP = \"${local_ip}\""$'\n'"localPort = ${local_port}"$'\n'"remotePort = ${remote_port}"$'\n'
             ;;
         http|https)
             echo ""
@@ -547,11 +547,11 @@ fun_configure_proxy(){
                     domain_config="customDomains = [\"${custom_domain}\"]"
                     ;;
             esac
-            proxy_config="\n[[proxies]]\nname = \"${proxy_name}\"\ntype = \"${proxy_type}\"\nlocalIP = \"${local_ip}\"\nlocalPort = ${local_port}\n${domain_config}\n"
+            proxy_config=$'\n[[proxies]]\n'"name = \"${proxy_name}\""$'\n'"type = \"${proxy_type}\""$'\n'"localIP = \"${local_ip}\""$'\n'"localPort = ${local_port}"$'\n'"${domain_config}"$'\n'
             ;;
         stcp|xtcp|sudp)
             fun_input_secret_key
-            proxy_config="\n[[proxies]]\nname = \"${proxy_name}\"\ntype = \"${proxy_type}\"\nlocalIP = \"${local_ip}\"\nlocalPort = ${local_port}\nsecretKey = \"${secret_key}\"\n"
+            proxy_config=$'\n[[proxies]]\n'"name = \"${proxy_name}\""$'\n'"type = \"${proxy_type}\""$'\n'"localIP = \"${local_ip}\""$'\n'"localPort = ${local_port}"$'\n'"secretKey = \"${secret_key}\""$'\n'
             ;;
     esac
     
